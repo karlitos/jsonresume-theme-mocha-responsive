@@ -1,0 +1,13 @@
+{{#resume.basics}}
+<header class="resume-header clearfix">
+    <div class="profile-header">
+        <h1 class="display-block">{{name}}</h1>
+        <h2 class="display-block">{{label}}</h2>
+    </div>
+    {{#if picture}}
+    <div class="profile-pic">
+        <img src="{{imgPathToBase64 picture}}" alt="profile-pic">
+    </div>
+    {{/if}}
+</header>
+{{/resume.basics}}

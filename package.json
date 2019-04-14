@@ -1,0 +1,37 @@
+{
+  "name": "jsonresume-theme-mocha-responsive",
+  "version": "1.0.0",
+  "description": "Custom dark theme for JSON Resume based on Caffeine theme by Kelvin Nguyen (https://github.com/kelyvin)",
+  "deprecated": false,
+  "author": {
+    "name": "Karel Mácha",
+    "email": "karel.macha@karlitos.net",
+    "url": "http://karlitos.net/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karlitos/jsonresume-theme-mocha-responsive"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "keywords": [
+    "json",
+    "resume",
+    "jsonresume",
+    "json-resume"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "address-format": "0.0.3",
+    "base64-img": "^1.0.4",
+    "handlebars": "^4.0.5",
+    "handlebars-wax": "^4.0.0",
+    "is-url": "^1.2.4",
+    "marked": "^0.6.1",
+    "moment": "^2.17.1",
+    "promised-handlebars": "^2.0.1",
+    "swag": "^0.7.0"
+  },
+  "devDependencies": {}
+}

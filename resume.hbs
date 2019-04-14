@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
+	<title>{{#resume.basics}}{{name}}{{/resume.basics}}</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
+	<style>
+		{{{css}}}
+	</style>
+	</head>
+	<body>
+		<main id="resume" class="page">
+			{{> resume-header}}
+			<div class="resume-content">
+				<aside class="left-column">
+					{{> about }}
+					{{> skills }}
+					{{> languages }}
+					{{> interests }}
+				</aside>
+				<div class="right-column">
+					{{> summary}}
+					{{> work }}
+					{{> volunteer }}
+					{{> education }}
+					{{> awards }}
+					{{> publications }}
+					{{> references }}
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
