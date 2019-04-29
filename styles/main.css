@@ -242,7 +242,7 @@ ul.two-column li {
     padding: 2px;
     border: 2px solid #FF5701;
     object-fit: scale-down;
-    background: white;
+    background: #FFFFFF;
     float: right;
 }
 
@@ -315,7 +315,7 @@ ul.two-column li {
 }
 
 .gpa {
-    border: 1px solid white;
+    border: 1px solid #FFFFFF;
     border-radius: 35%;
     padding: 2px;
     margin-left: 5px;
@@ -371,17 +371,17 @@ ul.two-column li {
 @media print {
     body {
         margin: 0;
-        background: white;
+        background: #FFFFFF;
         color: #000;
     }
 
     main {
-        background: white !important;
+        background: #FFFFFF !important;
         color: black !important;
     }
 
     @page {
-        border-top: 2px solid white;
+        border-top: 2px solid #FFFFFF;
     }
 
     .page {
@@ -395,7 +395,8 @@ ul.two-column li {
 
     .title {
         background-color: #393e46;
-        color: white
+        color: #FFFFFF;
+        page-break-inside: avoid;
     }
 
     .keyline {

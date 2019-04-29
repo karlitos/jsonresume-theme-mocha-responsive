@@ -1,0 +1,26 @@
+{
+  "colors": {
+    "background": "",
+    "accent": "",
+    "coloredAccent" : "",
+    "text" : ""
+  },
+  "colors1": {
+    "background": "#363333",
+    "accent": "#2c2929",
+    "coloredAccent" : "#E16428",
+    "text" : ""
+  },
+  "colors2": {
+    "background": "#363333",
+    "accent": "#2a1d1d",
+    "coloredAccent" : "#E16428",
+    "text" : ""
+  },
+  "colors3": {
+    "background": "#363333",
+    "accent": "#2c221d",
+    "coloredAccent" : "#E16428",
+    "text" : ""
+  }
+}
