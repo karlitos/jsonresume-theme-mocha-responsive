@@ -14,11 +14,24 @@ For usage and issues associated with HackMyResume see the next section.
 
 ## Using the theme
 
-The theme supports the [HackMyResume](https://github.com/hacksalot/HackMyResume) tool and shall be fully compatible with [resume-cli](https://github.com/jsonresume/resume-cli).
+The theme supports the [HackMyResume](https://github.com/hacksalot/HackMyResume) tool and shall be fully compatible with [resume-cli](https://github.com/jsonresume/resume-cli). The theme was specifically developed for my own toolkit [KissMyResume](https://github.com/karlitos/KissMyResume) which can utilize the __async rendering__ and __markdown support__.
 
 Install the theme from npm
 ```bash
 npm install jsonresume-theme-mocha-responsive
+```
+### Using with KissMyResume
+
+The KissMyResume tool will automatically utilize async theme rendering and has support for Markdown markup and conversion of local and remote images to Base64. Set RENDER_MARKDOWN or PROCESS_IMAGE environment variables to _true_  to enable those features.
+
+```bash
+RENDER_MARKDOWN=true PROCESS_IMAGE=true kissmyresume build path-to-resume.json --theme jsonresume-theme-mocha-responsive/
+```
+
+Yuou can use the `serve` command for live in-Browser preview with hot-reloading on resume changes.
+
+```bash
+RENDER_MARKDOWN=true PROCESS_IMAGE=true kissmyresume serve path-to-resume.json --theme jsonresume-theme-mocha-responsive/
 ```
 
 ### Using with HackMyresume
