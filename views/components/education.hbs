@@ -6,7 +6,7 @@
         <section class="item">
             {{> section-header name=this.institution }}
 
-            <h4 class="display-inline">{{#if studyType}}{{studyType}} {{/if}}{{#if area}}{{area}}{{/if}}</h4>
+            <h4 class="display-inline">{{#if studyType}}{{studyType}}{{/if}}{{#and studyType area}} - {{area}}{{/and}}</h4>
 
             {{#if gpa}}
             <h5 class="display-inline gpa">GPA {{gpa}}</h5>
