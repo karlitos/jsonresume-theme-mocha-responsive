@@ -28,8 +28,8 @@ const customHelpers = {
 	is: function(val1, val2, options) {
 		if(val1 && val1 === val2) {
 			return options.fn(this);
-		  }
-		  return options.inverse(this);
+		}
+		return options.inverse(this);
 	},
 
 	lowercase: function(str) {
@@ -38,7 +38,7 @@ const customHelpers = {
 
 	and: function(testA, testB, options) {
 		if (testA && testB) {
-		  	return options.fn(this);
+			return options.fn(this);
 		} else {
 		  	return options.inverse(this);
 		}
@@ -91,10 +91,18 @@ const customHelpers = {
 		return addressList.join('<br/>');
 	},
 
-	formatDate: function(date) {
-		const parsedDate = new Date(Date.parse(date));
-		// let's assume, that a date stringconsisting only of 4 chracters will be solely a year
-		return date.length == 4 ? parsedDate.getFullYear() : `${parsedDate.getMonth() + 1}/${parsedDate.getFullYear()}`
+	formatDate: function(dateString) {
+		const parsedDate = new Date(dateString);
+		// standalone year
+		if (/^([1-2][0-9]{3})$/.test(dateString)) {
+			return (parsedDate.getFullYear()).toString();
+		// year month YYYY-MM format
+		} else if (/^([1-2][0-9]{3}-[0-1]?[0-9])$/.test(dateString)) {
+			return `${String(parsedDate.getMonth() + 1).padStart(2, '0')}/${parsedDate.getFullYear()}`;
+		} else {
+		// return the date in DD/MM/YYYY format
+			return parsedDate.toLocaleDateString('en-GB', {year: 'numeric', month: '2-digit', day: '2-digit'});
+		}
 	},
 };
 
@@ -129,7 +137,7 @@ const renderAsync = async (resumeJson) => {
  * @returns {string|Promise<String>} The rednered HMTML Markupt or a Promise resolving to it
  */
 const render = (resumeJson) => {
-	let css, resumeTemplate;
+	let css, fa, faV4Shim, resumeTemplate;
 
 	try {
 		css = fs.readFileSync(path.resolve(__dirname, 'styles/main.css'), 'utf-8');
@@ -145,6 +153,8 @@ const render = (resumeJson) => {
 		if (settings.colors.text) { css = css.replace(new RegExp(TEXT_COLOR, 'g'), settings.colors.text); }
 
 		resumeTemplate = fs.readFileSync(path.resolve(__dirname, 'resume.hbs'), 'utf-8');
+		fa = fs.readFileSync(path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/css/all.min.css"), 'utf-8');
+		
 	} catch (err) {
 		throw new Error('The source handlebar template file or the stylesheet could not be read.');
 	}
@@ -158,6 +168,8 @@ const render = (resumeJson) => {
 		// as long as we use promised-handlebars handlebars.compile returns a Promise!
 		return handlebars.compile(resumeTemplate)({
 			css: css,
+			fa: fa,
+			faV4Shim: faV4Shim,
 			resume: resumeJson
 		});
 	} catch (err) {
