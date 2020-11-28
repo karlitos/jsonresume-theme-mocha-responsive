@@ -241,7 +241,7 @@ ul.two-column li {
     border-radius: 10%;
     padding: 2px;
     border: 2px solid #FF5701;
-    object-fit: scale-down;
+    object-fit: cover;
     background: #FFFFFF;
     float: right;
 }

@@ -7,10 +7,7 @@ const HandlebarsAsync = promisedHandlebars(require('handlebars'));
 const Handlebars = require('handlebars');
 const handlebarsWax = require('handlebars-wax');
 const addressFormat = require('address-format');
-const moment = require('moment');
-const Swag = require('swag');
-const base64Img = require('base64-img');
-const isUrl = require('is-url');
+const imageToBase64 = require('image-to-base64');
 const marked = require('marked');
 
 const settings = require('./settings');
@@ -19,11 +16,6 @@ const ACCENT_COLOR = '#393e46';
 const COLLORED_ACCENT_COLOR = '#FF5701';
 const TEXT_COLOR = '#FFFFFF';
 
-
-// Register swag handlebars helpers
-Swag.registerHelpers(HandlebarsAsync);
-Swag.registerHelpers(Handlebars);
-
 // global  flags
 let RENDER_ASCYNC = false;
 let RENDER_MARKDOWN = process.env.RENDER_MARKDOWN || false;
@@ -31,47 +23,51 @@ let PROCESS_IMAGE =  process.env.PROCESS_IMAGE || false;
 
 const customHelpers = {
 	/**
-	 *  DO not use arrow functions! https://blog.pixelkritzel.de/posts/handlebars-dont-use-es6-arrow-functions-to-define-helpers/
+	 *  DO NOT USE ARROW FUNCTIONS! https://blog.pixelkritzel.de/posts/handlebars-dont-use-es6-arrow-functions-to-define-helpers/
 	 */
-	imgPathToBase64(imgPath) {
-		// The image processing is disabled by default
-		if (!PROCESS_IMAGE) return imgPath;
+	is: function(val1, val2, options) {
+		if(val1 && val1 === val2) {
+			return options.fn(this);
+		  }
+		  return options.inverse(this);
+	},
 
-		// If no path provided throw an error
-		if (!imgPath) { throw new Error('No valid path for the profile-picture image!'); }
+	lowercase: function(str) {
+		return str.toLowerCase();
+	},
 
-		if (isUrl(imgPath)) {
-			// Promise wrapper for base64Img.requestBase64
-			return RENDER_ASCYNC ? new Promise((resolve, reject) => {
-				base64Img.requestBase64(imgPath, (err, res, body) => {
-					if (err) {
-						reject(err);
-					}
-					resolve(body);
-				});
-			}) : imgPath;
-
+	and: function(testA, testB, options) {
+		if (testA && testB) {
+		  	return options.fn(this);
 		} else {
-			// try catch
-			try {
-				if (!fs.existsSync(imgPath)) { throw new Error('The image for the profile picture cannot be found!'); }
-				return base64Img.base64Sync(imgPath);
-			} catch (e) {
-				console.error(`There was an error when trying to convert the image ${imgPath}: ${e}`)
-			}
+		  	return options.inverse(this);
 		}
 	},
 
-	removeProtocol(url) {
+	imgPathToBase64: async function(imgPath) {
+		try {
+			// The image processing is disabled by default
+			if (!PROCESS_IMAGE) return imgPath;
+
+			// If no path provided throw an error
+			if (!imgPath) { throw new Error('No valid path for the profile-picture image!'); }
+
+			return RENDER_ASCYNC ? `data:image/jpg;base64,${await imageToBase64(imgPath)}` : imgPath;
+		} catch (e) {
+			throw new Error(`There was an error when trying to convert the image ${imgPath}: ${e}`)
+		}
+	},
+
+	removeProtocol: function(url) {
 		return url.replace(/.*?:\/\//g, '')
 	},
 
-	mdToHtml(string) {
+	mdToHtml: function(string) {
 		// The rendering of Markdown markup is disabled by default
 		return RENDER_MARKDOWN ? marked(string) : string;
 	},
 
-	concat() {
+	concat: function() {
 		let res = '';
 
 		for(let arg in arguments){
@@ -83,7 +79,7 @@ const customHelpers = {
 		return res;
 	},
 
-	formatAddress(address, city, region, postalCode, countryCode) {
+	formatAddress: function(address, city, region, postalCode, countryCode) {
 		let addressList = addressFormat({
 			address: address,
 			city: city,
@@ -95,7 +91,7 @@ const customHelpers = {
 		return addressList.join('<br/>');
 	},
 
-	formatDate(date) {
+	formatDate: function(date) {
 		const parsedDate = new Date(Date.parse(date));
 		// let's assume, that a date stringconsisting only of 4 chracters will be solely a year
 		return date.length == 4 ? parsedDate.getFullYear() : `${parsedDate.getMonth() + 1}/${parsedDate.getFullYear()}`
