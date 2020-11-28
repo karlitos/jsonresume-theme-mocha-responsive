@@ -33,7 +33,7 @@ const customHelpers = {
 	/**
 	 *  DO not use arrow functions! https://blog.pixelkritzel.de/posts/handlebars-dont-use-es6-arrow-functions-to-define-helpers/
 	 */
-	imgPathToBase64: function(imgPath) {
+	imgPathToBase64(imgPath) {
 		// The image processing is disabled by default
 		if (!PROCESS_IMAGE) return imgPath;
 
@@ -62,16 +62,16 @@ const customHelpers = {
 		}
 	},
 
-	removeProtocol: function(url) {
+	removeProtocol(url) {
 		return url.replace(/.*?:\/\//g, '')
 	},
 
-	mdToHtml: function(string) {
+	mdToHtml(string) {
 		// The rendering of Markdown markup is disabled by default
 		return RENDER_MARKDOWN ? marked(string) : string;
 	},
 
-	concat: function() {
+	concat() {
 		let res = '';
 
 		for(let arg in arguments){
@@ -83,7 +83,7 @@ const customHelpers = {
 		return res;
 	},
 
-	formatAddress: function(address, city, region, postalCode, countryCode) {
+	formatAddress(address, city, region, postalCode, countryCode) {
 		let addressList = addressFormat({
 			address: address,
 			city: city,
@@ -95,8 +95,10 @@ const customHelpers = {
 		return addressList.join('<br/>');
 	},
 
-	formatDate: function (date) {
-		return moment(Date.parse(date)).format('MM/YYYY')
+	formatDate(date) {
+		const parsedDate = new Date(Date.parse(date));
+		// let's assume, that a date stringconsisting only of 4 chracters will be solely a year
+		return date.length == 4 ? parsedDate.getFullYear() : `${parsedDate.getMonth() + 1}/${parsedDate.getFullYear()}`
 	},
 };
 

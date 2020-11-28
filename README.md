@@ -28,7 +28,7 @@ The KissMyResume tool will automatically utilize async theme rendering and has s
 RENDER_MARKDOWN=true PROCESS_IMAGE=true kissmyresume build path-to-resume.json --theme jsonresume-theme-mocha-responsive/
 ```
 
-Yuou can use the `serve` command for live in-Browser preview with hot-reloading on resume changes.
+You can use the `serve` command for live in-Browser preview with hot-reloading on resume changes.
 
 ```bash
 RENDER_MARKDOWN=true PROCESS_IMAGE=true kissmyresume serve path-to-resume.json --theme jsonresume-theme-mocha-responsive/
