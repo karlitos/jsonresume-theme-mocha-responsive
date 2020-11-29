@@ -24,4 +24,29 @@ describe('The formatDate function', () => {
         expect(formatDate('1900')).toBe('1900');
         expect(formatDate('2222')).toBe('2222');
     });
-  });
+});
+
+describe('The concat function', () => {
+    const concat = customHelpers.concat;
+
+    test('it concatenate multiple strings correctly', () => {
+        expect(concat('ba', 'na', 'na')).toBe('banana');
+        expect(concat('Ba', ' T ', 'mAn')).toBe('Ba T mAn');
+        expect(concat('', ' ', `${(1).toString()}`)).toBe(' 1');
+    });
+
+    test('it concatenate numbers correctly', () => {
+        expect(concat(1, 2, 3)).toBe('123');
+        expect(concat(1.1, 2.2, 3.3)).toBe('1.12.23.3');
+    });
+
+    test('it concatenate mixed content correctly', () => {
+        expect(concat('foo', 2, false)).toBe('foo2false');
+        expect(concat('undefined', undefined)).toBe('undefinedundefined');
+    });
+
+    test('it omits non primitive data types', () => {
+        expect(concat({},[], null, function(){})).toBe('');
+    });
+
+});

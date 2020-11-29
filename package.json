@@ -1,6 +1,6 @@
 {
   "name": "jsonresume-theme-mocha-responsive",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Custom dark theme for JSON Resume based on Caffeine theme by Kelvin Nguyen (https://github.com/kelyvin)",
   "deprecated": false,
   "main": "index.js",

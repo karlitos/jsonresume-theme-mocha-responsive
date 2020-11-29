@@ -71,7 +71,7 @@ const customHelpers = {
 		let res = '';
 
 		for(let arg in arguments){
-			if (typeof arguments[arg] !== 'object') {
+			if (typeof arguments[arg] !== 'object' && typeof arguments[arg] !== 'function') {
 				res += arguments[arg];
 			}
 		}
