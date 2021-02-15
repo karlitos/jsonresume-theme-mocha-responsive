@@ -139,25 +139,20 @@ const renderAsync = async (resumeJson) => {
 const render = (resumeJson) => {
 	let css, fa, faV4Shim, resumeTemplate;
 
-	try {
-		css = fs.readFileSync(path.resolve(__dirname, 'styles/main.css'), 'utf-8');
+	css = fs.readFileSync(path.resolve(__dirname, 'styles/main.css'), 'utf-8');
 
-		// Replace the default colors if defined in settings
-		// Replace background #222831
-		if (settings.colors.background) { css = css.replace(new RegExp(BACKGROUND_COLOR, 'g'), settings.colors.background); }
-		// Replace accent #393e46
-		if (settings.colors.accent) { css = css.replace(new RegExp(ACCENT_COLOR, 'g'), settings.colors.accent); }
-		// Replace colored accent
-		if (settings.colors.coloredAccent) { css = css.replace(new RegExp(COLLORED_ACCENT_COLOR, 'g'), settings.colors.coloredAccent); }
-		// Replace text color
-		if (settings.colors.text) { css = css.replace(new RegExp(TEXT_COLOR, 'g'), settings.colors.text); }
+	// Replace the default colors if defined in settings
+	// Replace background #222831
+	if (settings.colors.background) { css = css.replace(new RegExp(BACKGROUND_COLOR, 'g'), settings.colors.background); }
+	// Replace accent #393e46
+	if (settings.colors.accent) { css = css.replace(new RegExp(ACCENT_COLOR, 'g'), settings.colors.accent); }
+	// Replace colored accent
+	if (settings.colors.coloredAccent) { css = css.replace(new RegExp(COLLORED_ACCENT_COLOR, 'g'), settings.colors.coloredAccent); }
+	// Replace text color
+	if (settings.colors.text) { css = css.replace(new RegExp(TEXT_COLOR, 'g'), settings.colors.text); }
 
-		resumeTemplate = fs.readFileSync(path.resolve(__dirname, 'resume.hbs'), 'utf-8');
-		fa = fs.readFileSync(path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/css/all.min.css"), 'utf-8');
-		
-	} catch (err) {
-		throw new Error('The source handlebar template file or the stylesheet could not be read.');
-	}
+	resumeTemplate = fs.readFileSync(path.resolve(__dirname, 'resume.hbs'), 'utf-8');
+	fa = fs.readFileSync(path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/css/all.min.css"), 'utf-8');
 
 	const handlebars = RENDER_ASCYNC ? handlebarsWax(HandlebarsAsync) : handlebarsWax(Handlebars);
 
