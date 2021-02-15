@@ -27,6 +27,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "address-format": "0.0.3",
     "handlebars": "^4.7.6",
     "handlebars-wax": "^5.0.0",
