@@ -31,7 +31,7 @@
     "handlebars": "^4.7.6",
     "handlebars-wax": "^5.0.0",
     "image-to-base64": "^2.1.1",
-    "marked": "^0.8.2",
+    "marked": "^4.0.10",
     "promised-handlebars": "^2.0.1"
   },
   "devDependencies": {
