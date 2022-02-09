@@ -60,7 +60,7 @@ body {
     /* margin: 50px 0 100px; */
     margin: 0;
     letter-spacing: .3px;
-    color: #1D1F21;
+    color: #39424B;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -120,7 +120,7 @@ a {
 }
 
 a:hover, a:hover > i.fa-external-link, .info-tag-container a:hover .fa.fa-external-link {
-    color: #2895F1;
+    color: #81a2be;
 }
 
 a .fa-external-link {
@@ -251,7 +251,7 @@ ul.two-column li {
 
 /* Layouts */
 .page {
-    background: #222831;
+    background: #1d1f21;
     color: #eeeeee;
     /* width: 612px; */
     min-height: 792px;
